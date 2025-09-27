@@ -1,6 +1,9 @@
 "use client";
 
 import { Provider } from "@/features/chakra/provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -10,7 +13,9 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
-        <Provider>{children}</Provider>
+        <QueryClientProvider client={queryClient}>
+          <Provider>{children}</Provider>
+        </QueryClientProvider>
       </body>
     </html>
   );

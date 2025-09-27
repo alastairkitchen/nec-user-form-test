@@ -1,17 +1,19 @@
 "use client";
 
-import { Box, Button, HStack } from "@chakra-ui/react";
+import { useGetUsersQuery } from "@/features/users/data-access/useGetUsersQuery";
+import { Box } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Home() {
+  const { data } = useGetUsersQuery();
+
   return (
     <Box>
-      <Link href="/about">About</Link>
+      <Link href="/add">Add user</Link>
 
-      <HStack>
-        <Button>Click me</Button>
-        <Button>Click me</Button>
-      </HStack>
+      {data?.users.map((user) => (
+        <Box>{user.fullName}</Box>
+      ))}
     </Box>
   );
 }

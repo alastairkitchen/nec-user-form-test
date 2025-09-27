@@ -1,0 +1,10 @@
+{
+  "data": [
+    { "id": 1, "value": "Skateboarding" },
+    { "id": 2, "value": "Cinema" },
+    { "id": 3, "value": "Running" },
+    { "id": 4, "value": "Swimming" },
+    { "id": 5, "value": "Gaming" },
+    { "id": 6, "value": "Research" }
+  ]
+}

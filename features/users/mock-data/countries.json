@@ -1,0 +1,29 @@
+{
+  "data": [
+    { "id": 1, "value": "Argentina" },
+    { "id": 2, "value": "Australia" },
+    { "id": 3, "value": "Belgium" },
+    { "id": 4, "value": "Brazil" },
+    { "id": 5, "value": "Canada" },
+    { "id": 6, "value": "China" },
+    { "id": 7, "value": "Egypt" },
+    { "id": 8, "value": "France" },
+    { "id": 9, "value": "Germany" },
+    { "id": 10, "value": "India" },
+    { "id": 11, "value": "Italy" },
+    { "id": 12, "value": "Japan" },
+    { "id": 13, "value": "Mexico" },
+    { "id": 14, "value": "Netherlands" },
+    { "id": 15, "value": "New Zealand" },
+    { "id": 16, "value": "Nigeria" },
+    { "id": 17, "value": "Norway" },
+    { "id": 18, "value": "Russia" },
+    { "id": 19, "value": "South Africa" },
+    { "id": 20, "value": "South Korea" },
+    { "id": 21, "value": "Spain" },
+    { "id": 22, "value": "Sweden" },
+    { "id": 23, "value": "Switzerland" },
+    { "id": 24, "value": "United Kingdom" },
+    { "id": 25, "value": "United States" }
+  ]
+}

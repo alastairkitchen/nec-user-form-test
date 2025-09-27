@@ -1,5 +1,5 @@
+import { User } from "@/features/users/types";
 import { apiClient } from "./client";
-import { User } from "./types";
 
 type UsersResult = {
   users: User[];

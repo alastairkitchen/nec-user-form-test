@@ -1,10 +1,17 @@
+"use client";
+
+import { Box, Button, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
+    <Box>
       <Link href="/about">About</Link>
-    </div>
+
+      <HStack>
+        <Button>Click me</Button>
+        <Button>Click me</Button>
+      </HStack>
+    </Box>
   );
 }

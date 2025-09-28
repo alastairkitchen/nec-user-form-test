@@ -4,6 +4,7 @@ import { usersApi } from "../../../api/users";
 import { User } from "../types";
 import { toaster } from "@/features/chakra/toaster";
 import { GET_USERS_QUERY_KEY } from "./useGetUsersQuery";
+import Link from "next/link";
 
 export const useAddUserMutation = (options?: {
   onSuccess?: (data: User) => void;
@@ -21,6 +22,11 @@ export const useAddUserMutation = (options?: {
 
       toaster.create({
         title: "Successfully added User",
+        description: (
+          <>
+            view users list on <Link href="/">Homepage</Link>
+          </>
+        ),
         type: "success",
         duration: 5000,
       });

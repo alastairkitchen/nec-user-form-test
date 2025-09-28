@@ -1,7 +1,7 @@
 import nextJest from "next/jest.js";
+import * as structuredClone from "@ungap/structured-clone";
 
 const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: "./",
 });
 
@@ -13,8 +13,9 @@ const config = {
     "^@/(.*)$": "<rootDir>@/$1",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  globals: {
+    structuredClone: structuredClone.default, // fix ReferenceError: structuredClone is not defined errors
+  },
 };
-
-// module.exports = config;
 
 export default createJestConfig(config);

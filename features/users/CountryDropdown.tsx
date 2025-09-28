@@ -5,7 +5,7 @@ import { Controller, useFormContext } from "react-hook-form";
 
 import countries from "./mock-data/countries.json";
 import { useMemo } from "react";
-import { AddUserFormData } from "@/app/add/page";
+import { AddUserFormData } from "./add-user-form/AddUserForm";
 
 export const CountryDropdown = () => {
   const {
@@ -38,7 +38,7 @@ export const CountryDropdown = () => {
             multiple={false}
             name={field.name}
             value={[field.value]}
-            onValueChange={({ value }) => field.onChange(value)}
+            onValueChange={(value) => field.onChange(value)}
             onInteractOutside={() => field.onBlur()}
             collection={countriesValues}
           >

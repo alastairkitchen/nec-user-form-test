@@ -8,7 +8,7 @@ import {
 import { useController, useFormContext } from "react-hook-form";
 import interests from "./mock-data/interests.json";
 import { useMemo } from "react";
-import { AddUserFormData } from "@/app/add/page";
+import { AddUserFormData } from "@/app/users/add/page";
 
 export const InterestsCheckboxGroup = () => {
   const {
@@ -47,7 +47,7 @@ export const InterestsCheckboxGroup = () => {
         onValueChange={framework.field.onChange}
         name={framework.field.name}
       >
-        <Fieldset.Content>
+        <Fieldset.Content flexDir="row" flexWrap="wrap">
           {interestsValues?.items?.map((item) => (
             <Checkbox.Root key={item.value} value={item.value}>
               <Checkbox.HiddenInput />

@@ -7,6 +7,5 @@ export async function GET() {
 export async function POST(request: Request) {
   const user = await request.json();
   users.push(user);
-
   return Response.json({ user });
 }

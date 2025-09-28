@@ -1,29 +1,31 @@
 "use client";
+import { FormProvider, useForm } from "react-hook-form";
+import { useAddUserMutation } from "../data-access/useAddUserMutation";
+import { User } from "../types";
 import {
-  Box,
-  Button,
-  Heading,
+  Stack,
+  Field,
   Input,
   NumberInput,
-  Stack,
+  Button,
+  Box,
+  BoxProps,
+  Flex,
+  Text,
 } from "@chakra-ui/react";
-import { FormProvider, useForm } from "react-hook-form";
-import { Field } from "@chakra-ui/react";
-import { DevTool } from "@hookform/devtools";
-import { CountryDropdown, InterestsCheckboxGroup } from "@/features/users";
+import { CountryDropdown } from "../CountryDropdown";
+import { InterestsCheckboxGroup } from "../InterestsCheckboxGroup";
 import Link from "next/link";
-import { User } from "@/features/users/types";
-import { useAddUserMutation } from "@/features/users/data-access/useAddUserMutation";
-import { Toaster } from "@/features/chakra/toaster";
+import { DevTool } from "@hookform/devtools";
 
 export type AddUserFormData = {
   fullName: string;
   age: string;
-  country: string[];
+  country: string;
   interests: string[];
 };
 
-const AddUser = () => {
+export const AddUserForm: React.FC<BoxProps> = (props) => {
   const form = useForm<AddUserFormData>();
 
   const { mutate, isPending } = useAddUserMutation();
@@ -35,11 +37,12 @@ const AddUser = () => {
     formState: { errors },
     reset,
   } = form;
+
   const onSubmit = (data: AddUserFormData) => {
     const payload: User = {
       fullName: data?.fullName,
       age: Number(data?.age),
-      country: data?.country.length > 0 ? Number(data?.country[0]) : null,
+      country: data?.country?.length > 0 ? Number(data?.country) : null,
       interests: data?.interests?.map((item) => Number(item)),
     };
 
@@ -51,11 +54,18 @@ const AddUser = () => {
   };
 
   return (
-    <Box maxW="700px" margin="0 auto">
-      <Link href="/">Go to Homepage</Link>
-      <Heading as="h1">Add users Page</Heading>
+    <FormProvider {...form}>
+      <Box
+        border="1px solid"
+        borderColor="whiteAlpha.400"
+        padding="4"
+        borderRadius="md"
+        {...props}
+      >
+        <Text id="form-description">
+          Fill out the form below to add a new user
+        </Text>
 
-      <FormProvider {...form}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap={6}>
             <Field.Root invalid={!!errors.fullName}>
@@ -70,7 +80,7 @@ const AddUser = () => {
             </Field.Root>
             <Field.Root invalid={!!errors.age}>
               <Field.Label>Age</Field.Label>
-              <NumberInput.Root width="200px" defaultValue="10" max={120}>
+              <NumberInput.Root width="200px" max={120}>
                 <NumberInput.Control />
                 <NumberInput.Input
                   {...register("age", {
@@ -86,16 +96,34 @@ const AddUser = () => {
             </Field.Root>
             <CountryDropdown />
             <InterestsCheckboxGroup />
-            <Button colorPalette="purple" type="submit" loading={isPending}>
-              Add User
-            </Button>
+            <Flex mt={4} gap={4}>
+              <Button
+                colorPalette="purple"
+                type="submit"
+                loading={isPending}
+                role="button"
+                aria-describedby="form-description"
+                aria-label="Add user"
+              >
+                Add User
+              </Button>
+              <Button
+                asChild
+                opacity="0.8"
+                colorPalette="purple"
+                bg="colorPalette.200"
+                color="black"
+                _hover={{
+                  opacity: 1,
+                }}
+              >
+                <Link href="/">View users</Link>
+              </Button>
+            </Flex>
           </Stack>
           <DevTool control={control} /> {/* set up the dev tool */}
         </form>
-      </FormProvider>
-      <Toaster />
-    </Box>
+      </Box>
+    </FormProvider>
   );
 };
-
-export default AddUser;

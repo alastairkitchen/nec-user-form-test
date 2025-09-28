@@ -8,7 +8,7 @@ import {
 import { useController, useFormContext } from "react-hook-form";
 import interests from "./mock-data/interests.json";
 import { useMemo } from "react";
-import { AddUserFormData } from "@/app/users/add/page";
+import { AddUserFormData } from "./add-user-form/AddUserForm";
 
 export const InterestsCheckboxGroup = () => {
   const {

@@ -1,18 +1,17 @@
 "use client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { usersApi } from "../../../api/users";
 import { User } from "../types";
 import { toaster } from "@/features/chakra/toaster";
 import { GET_USERS_QUERY_KEY } from "./useGetUsersQuery";
 import Link from "next/link";
+import { queryClient } from "@/app/layout";
 
 export const useAddUserMutation = (options?: {
   onSuccess?: (data: User) => void;
   onError?: (error: Error) => void;
   invalidateQueries?: boolean;
 }) => {
-  const queryClient = useQueryClient();
-
   return useMutation<User, Error, User>({
     mutationFn: (user: User) => usersApi.addUser(user),
     onSuccess: () => {

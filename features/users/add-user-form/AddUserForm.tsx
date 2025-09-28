@@ -16,17 +16,23 @@ import {
 import { CountryDropdown } from "../CountryDropdown";
 import { InterestsCheckboxGroup } from "../InterestsCheckboxGroup";
 import Link from "next/link";
-import { DevTool } from "@hookform/devtools";
 
 export type AddUserFormData = {
   fullName: string;
   age: string;
-  country: string;
+  country: string[];
   interests: string[];
 };
 
 export const AddUserForm: React.FC<BoxProps> = (props) => {
-  const form = useForm<AddUserFormData>();
+  const form = useForm<AddUserFormData>({
+    defaultValues: {
+      fullName: "",
+      age: "",
+      country: [],
+      interests: [],
+    },
+  });
 
   const { mutate, isPending } = useAddUserMutation();
 
@@ -42,7 +48,7 @@ export const AddUserForm: React.FC<BoxProps> = (props) => {
     const payload: User = {
       fullName: data?.fullName,
       age: Number(data?.age),
-      country: data?.country?.length > 0 ? Number(data?.country) : null,
+      country: data?.country?.length > 0 ? Number(data?.country[0]) : null,
       interests: data?.interests?.map((item) => Number(item)),
     };
 
@@ -62,7 +68,7 @@ export const AddUserForm: React.FC<BoxProps> = (props) => {
         borderRadius="md"
         {...props}
       >
-        <Text id="form-description">
+        <Text id="form-description" mb={4}>
           Fill out the form below to add a new user
         </Text>
 
@@ -121,7 +127,6 @@ export const AddUserForm: React.FC<BoxProps> = (props) => {
               </Button>
             </Flex>
           </Stack>
-          <DevTool control={control} /> {/* set up the dev tool */}
         </form>
       </Box>
     </FormProvider>

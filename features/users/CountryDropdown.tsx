@@ -37,8 +37,8 @@ export const CountryDropdown = () => {
           <Select.Root
             multiple={false}
             name={field.name}
-            value={[field.value]}
-            onValueChange={(value) => field.onChange(value)}
+            value={field.value}
+            onValueChange={({ value }) => field.onChange(value)}
             onInteractOutside={() => field.onBlur()}
             collection={countriesValues}
           >

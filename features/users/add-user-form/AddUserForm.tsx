@@ -54,7 +54,12 @@ export const AddUserForm: React.FC<BoxProps> = (props) => {
 
     mutate(payload, {
       onSuccess: () => {
-        reset();
+        reset({
+          fullName: "",
+          age: "",
+          country: [],
+          interests: [],
+        });
       },
     });
   };

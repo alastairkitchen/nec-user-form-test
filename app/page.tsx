@@ -20,8 +20,8 @@ export default function Home() {
         {isError && <Text>An error occured...</Text>}
 
         <Stack gap="2" mb={6}>
-          {data?.users.map((user) => (
-            <Flex>
+          {data?.users.map((user, i) => (
+            <Flex key={i}>
               {user.fullName} | age: {user?.age} | Country: {user?.country} |
               Interests: {user?.interests?.map((item) => `${item} `)}
             </Flex>

@@ -5,7 +5,7 @@ import { User } from "../types";
 import { toaster } from "@/features/chakra/toaster";
 import { GET_USERS_QUERY_KEY } from "./useGetUsersQuery";
 import Link from "next/link";
-import { queryClient } from "@/app/layout";
+import { queryClient } from "@/features/shared/query-client";
 
 export const useAddUserMutation = (options?: {
   onSuccess?: (data: User) => void;

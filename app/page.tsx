@@ -1,6 +1,4 @@
 "use client";
-import { Toaster } from "@/features/chakra/toaster";
-import { SiteHeader } from "@/features/shared";
 import { useGetUsersQuery } from "@/features/users/data-access/useGetUsersQuery";
 import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
@@ -9,9 +7,7 @@ export default function Home() {
   const { data, isLoading, isError } = useGetUsersQuery();
 
   return (
-    <Box maxW="900px" margin="0 auto">
-      <SiteHeader />
-
+    <>
       <Heading as="h1" mb={6}>
         Users list
       </Heading>
@@ -31,9 +27,7 @@ export default function Home() {
         <Button asChild colorPalette="purple">
           <Link href="/users/add">Add users</Link>
         </Button>
-
-        <Toaster />
       </Box>
-    </Box>
+    </>
   );
 }
